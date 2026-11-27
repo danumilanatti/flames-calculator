@@ -138,7 +138,7 @@ const ring = $("ring");
 const ringCenter = $("ringCenter");
 const logEl = $("log");
 const messageEl = $("message");
-const summary = $("summary");
+
 const result = $("result");
 const calcBtn = $("calcBtn");
 
@@ -164,7 +164,7 @@ function showMessage(text) { messageEl.textContent = text; }
 
 function resetView() {
   runId++;                          // stop any running animation
-  summary.hidden = true;
+  
   result.hidden = true;
   ringCenter.className = "ring-center";
   ringCenter.textContent = "F L A M E S";
@@ -191,10 +191,9 @@ async function calculate(event) {
   const { first, second } = cancelCommon(a, b);
   const count = first.length + second.length;
 
-  summary.hidden = false;
-  $("leftover").innerHTML = [...first, ...second]
-    .map((c) => '<span class="chip">' + c + "</span>").join("");
-  $("countNum").textContent = count;
+  
+  
+  
 
   if (count === 0) {
     const same = a === b;
@@ -211,7 +210,7 @@ async function calculate(event) {
   const myRun = ++runId;
   calcBtn.disabled = true;
   ringCenter.className = "ring-center num";
-  ringCenter.textContent = count;
+  ringCenter.innerHTML = `<span>&#128152; Love number<br><b class="big">${count}</b></span>`;
   logEl.textContent = "Counting " + count + " each round…";
   await sleep(900);
 

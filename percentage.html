@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Percentage - LoveLogic</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <a href="index.html" style="color:#b52c52;font-weight:800;text-decoration:none">&#8592; Back to Home</a>
+
+    <header class="title">
+      <h1>Love Percentage</h1>
+      <p>Two names, one curious little calculation.</p>
+    </header>
+
+    <form class="card form" id="loveForm" novalidate>
+      <label for="pname1">Your Name</label>
+      <input id="pname1" type="text" placeholder="e.g. Romeo" autocomplete="off" maxlength="40" />
+
+      <label for="pname2">Name on Your Heart <span style="color:#e5446d">&hearts;</span></label>
+      <input id="pname2" type="text" placeholder="e.g. Juliet" autocomplete="off" maxlength="40" />
+
+      <div class="buttons">
+        <button type="submit" class="btn primary">Calculate Love %</button>
+        <button type="button" class="btn ghost" id="pReset">Reset</button>
+      </div>
+      <p class="message" id="pMessage" role="alert" aria-live="polite"></p>
+    </form>
+
+    <section class="card result" id="pResult" hidden>
+      <div class="result-letter">&#128152;</div>
+      <h2 id="pPercent" style="font-size:3.2rem">0%</h2>
+    </section>
+  </main>
+
+  <script src="percentage.js"></script>
+</body>
+</html>

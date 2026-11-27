@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLAMES – Relationship Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Floating hearts are injected here by script.js -->
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+
+  <main class="app">
+    <a href="index.html" style="color:#b52c52;font-weight:800;text-decoration:none">&#8592; Back to Home</a>
+    <header class="title">
+      <h1>FLAMES</h1>
+      <p>Two hearts enter, one fun little story unfolds.</p>
+    </header>
+
+    <!-- 1. INPUT FORM -->
+    <form class="card form" id="flamesForm" novalidate>
+      <label for="name1">Your Name</label>
+      <input id="name1" type="text" placeholder="e.g. Romeo" autocomplete="off" maxlength="40" />
+
+      <label for="name2">Name on Your Heart <span style="color:#e5446d">&hearts;</span></label>
+      <input id="name2" type="text" placeholder="e.g. Juliet" autocomplete="off" maxlength="40" />
+
+      <div class="buttons">
+        <button type="submit" class="btn primary" id="calcBtn">Calculate FLAMES</button>
+        <button type="button" class="btn ghost" id="resetBtn">Reset</button>
+      </div>
+      <!-- Validation messages appear here -->
+      <p class="message" id="message" role="alert" aria-live="polite"></p>
+    </form>
+
+    <!-- 3. FLAMES RING (one tile per node of the circular list) -->
+    <section class="stage" aria-label="FLAMES elimination">
+      <div class="ring" id="ring">
+        <div class="ring-center" id="ringCenter">F L A M E S</div>
+      </div>
+      <p class="log" id="log" aria-live="polite">Enter two names to start.</p>
+    </section>
+
+    <!-- 4. RESULT CARD -->
+    <section class="card result" id="result" hidden>
+      <div class="result-letter" id="resultLetter">F</div>
+      <h2 id="resultWord">Friends</h2>
+      <p id="resultText"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

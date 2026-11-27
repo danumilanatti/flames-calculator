@@ -185,6 +185,11 @@ body {
 }
 .result h2 { font-family: var(--font-head); font-size: 2rem; color: var(--rose); }
 .result p { margin-top: 0.4rem; }
+/* Fade in the relationship name and description when the result appears */
+.result:not([hidden]) h2,
+.result:not([hidden]) p {
+  animation: fadeIn 0.9s ease 0.3s both;
+}
  
 /* ===== Floating hearts (background) ===== */
 .hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
@@ -207,7 +212,10 @@ body {
   to   { box-shadow: 0 0 34px rgba(229, 68, 109, 0.95); }
 }
 @keyframes pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
- 
+ @keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
 /* ===== Responsive ===== */
 @media (min-width: 768px) {
   .app { width: min(100% - 4rem, 620px); padding-top: 3rem; }

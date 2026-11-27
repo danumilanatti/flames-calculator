@@ -124,12 +124,12 @@ function cancelCommon(a, b) {
    PART 4 – UI
    ===================================================== */
 const MEANINGS = {
-  F: { word: "Friends",   text: "Easy laughs and zero pressure. A friendship worth keeping." },
-  L: { word: "Love",      text: "Sparks are flying. This one has real romantic energy." },
-  A: { word: "Affection", text: "Warm, caring and fond of each other, softly and sincerely." },
-  M: { word: "Marriage",  text: "Wedding bells! The stars say this could go the distance." },
-  E: { word: "Enemy",     text: "Strong personalities collide. Fireworks, but not the nice kind." },
-  S: { word: "Sister",    text: "A sibling-like bond. Loyal, honest and always there." },
+  F: { word: "Friends",   text: "Sometimes the best stories begin with friendship." },
+  L: { word: "Love",      text: "A little love makes the world feel brighter." },
+  A: { word: "Affection", text: "Care, warmth and affection make beautiful connections." },
+  M: { word: "Marriage",  text: "A playful little glimpse at a happily-ever-after." },
+  E: { word: "Enemy",     text: "Plot twist! It's just a game, don't take it seriously." },
+  S: { word: "Sister",    text: "A bond full of care, fun and endless teasing." },
 };
 
 const $ = (id) => document.getElementById(id);

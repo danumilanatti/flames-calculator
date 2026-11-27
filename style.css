@@ -1,0 +1,225 @@
+
+/* ===== Design tokens ===== */
+:root {
+  --blush: #ffe9f0;
+  --petal: #ffc2d6;
+  --rose: #e5446d;
+  --rose-dark: #b52c52;
+  --plum: #3d1a3a;
+  --peach: #ffd9c7;
+  --lilac: #e9d7ff;
+  --white: #fffafc;
+  --font-head: "Fraunces", Georgia, serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+}
+ 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+body {
+  font-family: var(--font-body);
+  color: var(--plum);
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--blush), var(--peach) 50%, var(--lilac));
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+ 
+/* ===== Layout ===== */
+.app {
+  position: relative;
+  z-index: 1;
+  width: min(100% - 2rem, 560px);
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+  display: grid;
+  gap: 1.25rem;
+}
+ 
+.title { text-align: center; }
+.title h1 {
+  font-family: var(--font-head);
+  font-style: italic;
+  font-size: clamp(2.6rem, 10vw, 4rem);
+  color: var(--rose);
+  letter-spacing: 0.04em;
+}
+.title p { margin-top: 0.3rem; font-size: 1.05rem; }
+ 
+.card {
+  background: rgba(255, 250, 252, 0.8);
+  backdrop-filter: blur(6px);
+  border-radius: 24px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(229, 68, 109, 0.15);
+}
+ 
+/* ===== Form ===== */
+.form { display: grid; gap: 0.5rem; }
+.form label { font-weight: 800; margin-top: 0.5rem; }
+.form input {
+  font: inherit;
+  padding: 0.8rem 1rem;
+  border: 2px solid var(--petal);
+  border-radius: 14px;
+  background: var(--white);
+  color: var(--plum);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form input:focus-visible {
+  outline: none;
+  border-color: var(--rose);
+  box-shadow: 0 0 0 4px rgba(229, 68, 109, 0.2);
+}
+ 
+.buttons { display: flex; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
+.btn {
+  font: inherit;
+  font-weight: 800;
+  padding: 0.8rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid var(--rose);
+  cursor: pointer;
+  transition: transform 0.15s, background 0.2s;
+}
+.btn:focus-visible { outline: 3px solid var(--plum); outline-offset: 3px; }
+.btn:active { transform: scale(0.96); }
+.btn.primary { flex: 1 1 200px; background: var(--rose); color: #fff; }
+.btn.primary:hover:not(:disabled) { background: var(--rose-dark); }
+.btn.primary:disabled { opacity: 0.6; cursor: wait; }
+.btn.ghost { background: transparent; color: var(--rose-dark); }
+.btn.ghost:hover { background: var(--petal); }
+ 
+.message { min-height: 1.4em; margin-top: 0.5rem; color: var(--rose-dark); font-weight: 600; }
+ 
+/* ===== Summary ===== */
+.summary h2 { font-family: var(--font-head); font-size: 1.2rem; margin-bottom: 0.6rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.35rem; min-height: 2rem; }
+.chip {
+  background: var(--petal);
+  border-radius: 8px;
+  padding: 0.15rem 0.55rem;
+  font-weight: 800;
+}
+.count { margin-top: 0.8rem; }
+.count strong { font-size: 1.5rem; color: var(--rose); }
+ 
+/* ===== FLAMES ring =====
+   Each tile's left/top is set in script.js so the six
+   tiles sit on a circle, just like the circular list. */
+.stage { text-align: center; }
+.ring {
+  position: relative;
+  width: min(86vw, 340px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 2px dashed var(--petal);
+}
+.ring-center {
+  position: absolute;
+  inset: 32%;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  font-family: var(--font-head);
+  font-size: 0.95rem;
+  color: var(--rose-dark);
+}
+.ring-center.num { font-size: 2.4rem; }
+ 
+.tile {
+  position: absolute;
+  width: 21%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--white);
+  border: 3px solid var(--petal);
+  font-family: var(--font-head);
+  font-size: clamp(1.4rem, 7vw, 2rem);
+  font-weight: 600;
+  color: var(--rose-dark);
+  box-shadow: 0 6px 16px rgba(229, 68, 109, 0.18);
+  transition: background 0.4s, color 0.4s, border-color 0.4s, opacity 0.6s, filter 0.6s;
+}
+.tile small {
+  position: absolute;
+  bottom: -1.3em;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.tile.pointing { border-color: var(--rose); animation: pulse 0.5s ease 2; }
+.tile.out {
+  opacity: 0.3;
+  filter: grayscale(1);
+  background: #eee;
+  border-color: #ccc;
+  text-decoration: line-through;
+}
+.tile.winner {
+  background: var(--rose);
+  color: #fff;
+  border-color: var(--rose-dark);
+  animation: glow 1.2s ease-in-out infinite alternate;
+  z-index: 2;
+}
+ 
+.log { margin-top: 2rem; min-height: 3em; font-weight: 600; }
+ 
+/* ===== Result card ===== */
+.result { text-align: center; }
+.result:not([hidden]) { animation: pop 0.6s cubic-bezier(0.2, 1.4, 0.4, 1); }
+.result-letter {
+  width: 5rem; height: 5rem;
+  margin: 0 auto 0.6rem;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--rose), #ff8fab);
+  color: #fff;
+  font-family: var(--font-head);
+  font-size: 2.6rem;
+}
+.result h2 { font-family: var(--font-head); font-size: 2rem; color: var(--rose); }
+.result p { margin-top: 0.4rem; }
+ 
+/* ===== Floating hearts (background) ===== */
+.hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.heart {
+  position: absolute;
+  bottom: -2rem;
+  opacity: 0;
+  animation: floatUp linear infinite;
+}
+ 
+/* ===== Animations ===== */
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.55; }
+  100% { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+}
+@keyframes pulse { 50% { transform: translate(-50%, -50%) scale(1.18); } }
+@keyframes glow {
+  from { box-shadow: 0 0 10px rgba(229, 68, 109, 0.5); }
+  to   { box-shadow: 0 0 34px rgba(229, 68, 109, 0.95); }
+}
+@keyframes pop { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+ 
+/* ===== Responsive ===== */
+@media (min-width: 768px) {
+  .app { width: min(100% - 4rem, 620px); padding-top: 3rem; }
+}
+@media (max-width: 380px) {
+  .card { padding: 1.1rem; }
+  .tile small { display: none; }
+}
+ 
+/* Respect people who turn animations off */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .hearts { display: none; }
+}
+ 
